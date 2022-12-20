@@ -13,10 +13,11 @@ namespace HotellBooking.Data
         public void MigrateAndSeed(ApplicationDbContext dbContext)
         {
             dbContext.Database.Migrate();
-            SeedType(dbContext);
+            SeedRoom(dbContext);
+            SeedGuest(dbContext);
             dbContext.SaveChanges();
         }
-        private void SeedType(ApplicationDbContext dbContext)
+        private void SeedRoom(ApplicationDbContext dbContext)
         {
             if (!dbContext.HotellRooms.Any(c => c.Id == "rum nummer: 1"))
             {
@@ -35,6 +36,11 @@ namespace HotellBooking.Data
                     Type = "här kan 2 personer bo",
                 });
             }
+        }
+
+        private void SeedGuest(ApplicationDbContext dbContext)
+        {
+
         }
     }
 }
