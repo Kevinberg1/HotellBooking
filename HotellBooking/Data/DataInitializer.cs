@@ -40,7 +40,7 @@ namespace HotellBooking.Data
 
         private void SeedGuest(ApplicationDbContext dbContext)
         {
-
+            ///ska personer
         }
     }
 }

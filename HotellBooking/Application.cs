@@ -26,10 +26,10 @@ namespace HotellBooking
                         var action = new Creat(DbContext);
                         action.Run();
                         break;
-                    //case 2:
-                    //    var action1 = new Read(DbContext);
-                    //    action1.Run();
-                    //    break;
+                    case 2:
+                        var action1 = new Read(DbContext);
+                        action1.Run();
+                        break;
                     //case 3:
                     //    var action3 = new Update(DbContext);
                     //    action3.Run();
