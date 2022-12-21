@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotellBooking.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221220134055_initial migration")]
+    [Migration("20221221150645_initial migration")]
     partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,11 +38,11 @@ namespace HotellBooking.Migrations
                     b.Property<DateTime>("DateTimeStart")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("GuestsId")
+                    b.Property<int>("GuestsId")
                         .HasColumnType("int");
 
-                    b.Property<string>("roomId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("roomId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -76,12 +76,18 @@ namespace HotellBooking.Migrations
 
             modelBuilder.Entity("HotellBooking.Data.HotellRoom", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("beds")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -90,20 +96,21 @@ namespace HotellBooking.Migrations
 
             modelBuilder.Entity("HotellBooking.Data.Booking", b =>
                 {
-                    b.HasOne("HotellBooking.Data.Guests", null)
-                        .WithMany("Bookings")
-                        .HasForeignKey("GuestsId");
+                    b.HasOne("HotellBooking.Data.Guests", "Guests")
+                        .WithMany()
+                        .HasForeignKey("GuestsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("HotellBooking.Data.HotellRoom", "room")
                         .WithMany("Bookings")
-                        .HasForeignKey("roomId");
+                        .HasForeignKey("roomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Guests");
 
                     b.Navigation("room");
-                });
-
-            modelBuilder.Entity("HotellBooking.Data.Guests", b =>
-                {
-                    b.Navigation("Bookings");
                 });
 
             modelBuilder.Entity("HotellBooking.Data.HotellRoom", b =>

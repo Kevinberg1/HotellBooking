@@ -17,30 +17,90 @@ namespace HotellBooking.Data
             SeedGuest(dbContext);
             dbContext.SaveChanges();
         }
+
         private void SeedRoom(ApplicationDbContext dbContext)
         {
-            if (!dbContext.HotellRooms.Any(c => c.Id == "rum nummer: 1"))
+            if (!dbContext.HotellRooms.Any(c => c.Type == "Dubbelrum"))
             {
                 dbContext.HotellRooms.Add(new HotellRoom
                 {
-                    Id = "rum nummer: 1",
-                    Type = "Här kan 1 person bo",
+                    
+                    Type = "Dubbelrum",
+                    beds = 2
+
+
+                });
+            }
+            if (!dbContext.HotellRooms.Any(c => c.Type == "Dubbelrum"))
+            {
+                dbContext.HotellRooms.Add(new HotellRoom
+                {
+
+                    Type = "Dubbelrum",
+                    beds = 2
+
+
+                });
+            }
+            if (!dbContext.HotellRooms.Any(c => c.Type == "Enkelrum"))
+            {
+                dbContext.HotellRooms.Add(new HotellRoom
+                {
+
+                    Type = "Enkelrum",
+                    beds = 1
+
+
+                });
+            }
+            if (!dbContext.HotellRooms.Any(c => c.Type == "Enkelrum"))
+            {
+                dbContext.HotellRooms.Add(new HotellRoom
+                {
+
+                    Type = "Enkelrum",
+                    beds = 1
+
+
                 });
             }
 
-            if (!dbContext.HotellRooms.Any(c => c.Id == "rum nummer: 2"))
-            {
-                dbContext.HotellRooms.Add(new HotellRoom
-                {
-                    Id = "rum nummer: 2",
-                    Type = "här kan 2 personer bo",
-                });
-            }
         }
 
         private void SeedGuest(ApplicationDbContext dbContext)
         {
-            ///ska personer
+            if (!dbContext.Guests.Any(c => c.Name == "Adam"))
+            {
+                dbContext.Guests.Add(new Guests
+                {
+                    Name = "Adam",
+                    LastName = "Borg"
+                });
+            }
+            if (!dbContext.Guests.Any(c => c.Name == "Lilly"))
+            {
+                dbContext.Guests.Add(new Guests
+                {
+                    Name = "Lilly",
+                    LastName = "Gustavsson"
+                });
+            }
+            if (!dbContext.Guests.Any(c => c.Name == "Pelle"))
+            {
+                dbContext.Guests.Add(new Guests
+                {
+                    Name = "Pelle",
+                    LastName = "Johansson"
+                });
+            }
+            if (!dbContext.Guests.Any(c => c.Name == "Eva"))
+            {
+                dbContext.Guests.Add(new Guests
+                {
+                    Name = "Eva",
+                    LastName = "Eriksson"
+                });
+            }
         }
     }
 }

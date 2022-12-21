@@ -10,12 +10,17 @@ namespace HotellBooking.Data
     public class HotellRoom
     {
         [Key]
-        [Required]
-        [MaxLength(10)]
-        public string Id { get; set; }
+        
+        public int Id { get; set; }
 
         public List<Booking> Bookings { get; set; }
 
         public string Type { get; set; }
+
+        public int beds { get; set; }
+
+        
+
+
     }
 }

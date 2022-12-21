@@ -38,10 +38,12 @@ namespace HotellBooking
                     //    var action4 = new Delete(DbContext);
                     //    action4.Run();
                     //    break;
-                    //case 0:
-                    //    break;
-
+                    
+                    case 0:
+                        Console.WriteLine("Tack för idag");
+                        return;
                     default:
+                        Console.WriteLine("vänligen välj något altenativ");
                         break;
                 }
                 List<ICrud> actions = new List<ICrud>();

@@ -23,13 +23,11 @@ namespace HotellBooking.Controller
                 Console.Clear();
                 Console.WriteLine(" Bookings information");
                 Console.WriteLine("\n Id\tStart\t\tEnd\t\tCar");
-                Console.WriteLine(" =============================================");
-
-
+                
                 // If no bookings in system
                 if (dbContext.Bookings == null)
                 {
-                    Console.WriteLine(" No active bookings in database. Create a booking first");
+                    Console.WriteLine("Det finns inga bokingar. ");
                 }
                 else
                 {
@@ -43,12 +41,13 @@ namespace HotellBooking.Controller
                         Console.WriteLine(
                             $" {booking.Id}\t{booking.DateTimeStart.ToShortDateString()}\t{booking.DateTimeEnd.ToShortDateString()}\t{booking.room.Id}");
 
-                        //Console.WriteLine(" ------------------------------------------------------------------------------");
+                     
                     }
                 }
 
                 Console.WriteLine("\n Press any key to continue");
                 Console.ReadLine();
+                Console.Clear();
             
         }
     }

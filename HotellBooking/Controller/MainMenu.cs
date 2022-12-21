@@ -10,8 +10,8 @@ namespace HotellBooking.Controller
     {
         public static int ShowMenu()
         {
-            Console.WriteLine("1: (C) Create");
-            Console.WriteLine("2: (R) Read");
+            Console.WriteLine("1:Boka rum");
+            Console.WriteLine("2: se alla bokingar");
             Console.WriteLine("3: (U) Update");
             Console.WriteLine("4: (D) Delete");
             Console.WriteLine("0: Exit");
