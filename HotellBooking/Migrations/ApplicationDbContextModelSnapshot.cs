@@ -39,14 +39,14 @@ namespace HotellBooking.Migrations
                     b.Property<int>("GuestsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("roomId")
+                    b.Property<int>("HotellRoomId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GuestsId");
 
-                    b.HasIndex("roomId");
+                    b.HasIndex("HotellRoomId");
 
                     b.ToTable("Bookings");
                 });
@@ -100,20 +100,15 @@ namespace HotellBooking.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HotellBooking.Data.HotellRoom", "room")
-                        .WithMany("Bookings")
-                        .HasForeignKey("roomId")
+                    b.HasOne("HotellBooking.Data.HotellRoom", "HotellRoom")
+                        .WithMany()
+                        .HasForeignKey("HotellRoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Guests");
 
-                    b.Navigation("room");
-                });
-
-            modelBuilder.Entity("HotellBooking.Data.HotellRoom", b =>
-                {
-                    b.Navigation("Bookings");
+                    b.Navigation("HotellRoom");
                 });
 #pragma warning restore 612, 618
         }

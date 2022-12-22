@@ -10,10 +10,11 @@ namespace HotellBooking.Controller
     {
         public static int ShowMenu()
         {
-            Console.WriteLine("1:Boka rum");
-            Console.WriteLine("2: se alla bokingar");
-            Console.WriteLine("3: (U) Update");
-            Console.WriteLine("4: (D) Delete");
+            Console.WriteLine("choose what you want to do!");
+            Console.WriteLine("1: Create: Booking/guest/room");
+            Console.WriteLine("2: Read: Booking/guest/room");
+            Console.WriteLine("3: Update: Booking/guest/room");
+            Console.WriteLine("4: Delete: Booking/guest/room");
             Console.WriteLine("0: Exit");
 
             var sel = Convert.ToInt32(Console.ReadLine());

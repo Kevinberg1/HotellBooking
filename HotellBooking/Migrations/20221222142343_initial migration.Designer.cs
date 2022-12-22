@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotellBooking.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221221150645_initial migration")]
+    [Migration("20221222142343_initial migration")]
     partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,14 +41,14 @@ namespace HotellBooking.Migrations
                     b.Property<int>("GuestsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("roomId")
+                    b.Property<int>("HotellRoomId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GuestsId");
 
-                    b.HasIndex("roomId");
+                    b.HasIndex("HotellRoomId");
 
                     b.ToTable("Bookings");
                 });
@@ -102,20 +102,15 @@ namespace HotellBooking.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HotellBooking.Data.HotellRoom", "room")
-                        .WithMany("Bookings")
-                        .HasForeignKey("roomId")
+                    b.HasOne("HotellBooking.Data.HotellRoom", "HotellRoom")
+                        .WithMany()
+                        .HasForeignKey("HotellRoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Guests");
 
-                    b.Navigation("room");
-                });
-
-            modelBuilder.Entity("HotellBooking.Data.HotellRoom", b =>
-                {
-                    b.Navigation("Bookings");
+                    b.Navigation("HotellRoom");
                 });
 #pragma warning restore 612, 618
         }

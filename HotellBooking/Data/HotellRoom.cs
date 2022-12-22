@@ -13,10 +13,13 @@ namespace HotellBooking.Data
         
         public int Id { get; set; }
 
-        public List<Booking> Bookings { get; set; }
+        
 
+        [Required]
         public string Type { get; set; }
 
+
+        [Required]
         public int beds { get; set; }
 
         

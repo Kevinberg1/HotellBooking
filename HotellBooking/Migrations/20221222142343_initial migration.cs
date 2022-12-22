@@ -43,7 +43,7 @@ namespace HotellBooking.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    roomId = table.Column<int>(type: "int", nullable: false),
+                    HotellRoomId = table.Column<int>(type: "int", nullable: false),
                     GuestsId = table.Column<int>(type: "int", nullable: false),
                     DateTimeStart = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateTimeEnd = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -58,8 +58,8 @@ namespace HotellBooking.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Bookings_HotellRooms_roomId",
-                        column: x => x.roomId,
+                        name: "FK_Bookings_HotellRooms_HotellRoomId",
+                        column: x => x.HotellRoomId,
                         principalTable: "HotellRooms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -71,9 +71,9 @@ namespace HotellBooking.Migrations
                 column: "GuestsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bookings_roomId",
+                name: "IX_Bookings_HotellRoomId",
                 table: "Bookings",
-                column: "roomId");
+                column: "HotellRoomId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
