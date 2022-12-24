@@ -138,7 +138,7 @@ namespace HotellBooking.Controller
             bookingToCreate.Guests = dbContext.Guests.Where(c => c.Id == SelectGuest).FirstOrDefault();
 
             dbContext.Bookings.Add(bookingToCreate);
-            //dbContext.Bookings.Add(selectedRoom);
+            
             dbContext.SaveChanges();
 
             // SUCCESS!
