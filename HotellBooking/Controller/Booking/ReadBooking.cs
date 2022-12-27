@@ -22,33 +22,26 @@ namespace HotellBooking.Controller.Booking
 
             Console.Clear();
             Console.WriteLine(" Bookings information");
-            Console.WriteLine("\n Bokings Id\tStart Datum\t\tSlut Datum\t\tRum-nummer");
-
-            // If no bookings in system
+            Console.WriteLine("\n Bokings Id\tNamn\tStart Datum\tSlut Datum\tRum-nummer");
             if (dbContext.Bookings == null)
             {
                 Console.WriteLine("Det finns inga bokingar. ");
             }
             else
-            {
-                // Lets join tables including, 
+            { 
                 var bookingInclAllData = dbContext.Bookings
                     .Include(b => b.HotellRoom);
 
-                // display active bookings
                 foreach (var booking in bookingInclAllData.Include(b=>b.Guests).OrderBy(b => b.Id))
                 {
                     Console.WriteLine(
-                        $" {booking.Id}\t{booking.Guests.Name}\t{booking.DateTimeStart.ToShortDateString()}\t{booking.DateTimeEnd.ToShortDateString()}\t{booking.HotellRoom.Id}");
-
-
+                        $" {booking.Id}\t\t{booking.Guests.Name}\t{booking.DateTimeStart.ToShortDateString()}\t{booking.DateTimeEnd.ToShortDateString()}\t{booking.HotellRoom.Id}");
                 }
             }
 
-            Console.WriteLine("\n tyck på någpt");
+            Console.WriteLine("\n Tryck ENTER");
             Console.ReadLine();
             Console.Clear();
-
         }
     }
 }

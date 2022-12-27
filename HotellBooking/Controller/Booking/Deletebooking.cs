@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotellBooking.Controller.Booking
 {
@@ -23,11 +24,11 @@ namespace HotellBooking.Controller.Booking
 
 
             Console.WriteLine("Ta bort en booking, vilken ?");
-            foreach (var booking in dbContext.Bookings)
+            foreach (var booking in dbContext.Bookings.Include(b => b.Guests))
             {
-                Console.WriteLine($"Id: {booking.Id}");
-                Console.WriteLine($"Namn: {booking.Guests}");
-                Console.WriteLine($"Namn: {booking.DateTimeStart} {booking.DateTimeEnd}");
+                Console.WriteLine($"Boknings ID:: {booking.Id}");
+                Console.WriteLine($"Gäst namn: {booking.Guests.Name}");
+                Console.WriteLine($"Start/Slut Datum: {booking.DateTimeStart} {booking.DateTimeEnd}");
                 Console.WriteLine("====================");
             }
 
@@ -36,19 +37,13 @@ namespace HotellBooking.Controller.Booking
             var personToDelete = dbContext.Bookings.First(p => p.Id == personIdToDelete);
             dbContext.Bookings.Remove(personToDelete);
             dbContext.SaveChanges();
-            //Console.WriteLine("vill du tillbaka skriv ja om inte skriv nej");
-            //string g4 = Console.ReadLine();
-            //if (g4.ToLower() == "ja")
-            //{
-            //    Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\n Bokningen är nu raderad från systemet");
+            Console.ForegroundColor = ConsoleColor.Gray;
 
-            //}
-            //else
-            //{
-            //    Console.Clear();
-            //    return;
-
-            //}
+            Console.WriteLine("\n Tryck ENTER");
+            Console.ReadLine();
+            Console.Clear();
         }
 
     }

@@ -22,35 +22,27 @@ namespace HotellBooking.Controller
         {
 
             var bookingToCreate = new Data.Booking();
-
-            // Check what the guest wants
             Console.Clear();
             Console.WriteLine(" Hur många dagar vill du stanna?");
             int numberOfDays = Convert.ToInt32(Console.ReadLine());
 
-            // Keep asking for a valid date in the future
             bookingToCreate.DateTimeStart = new DateTime(2001, 01, 01, 23, 59, 59);
             while (bookingToCreate.DateTimeStart < DateTime.Now.Date)
             {
                 Console.WriteLine("\n från och med vilken dag vill du boka? (yyyy-mm-dd)");
                 bookingToCreate.DateTimeStart = Convert.ToDateTime(Console.ReadLine());
             }
-
-            // set dateEnd
             if (numberOfDays == 1) bookingToCreate.DateTimeEnd = bookingToCreate.DateTimeStart;
             else if (numberOfDays > 1)
                 bookingToCreate.DateTimeEnd = bookingToCreate.DateTimeStart.AddDays(numberOfDays);
 
-            // Now we need to create a list of available cars for the user to choose from.
-            // Lets start by making a list of ALL the dates included in the new booking
             List<DateTime> newBookingAllDates = new List<DateTime>();
             for (var dt = bookingToCreate.DateTimeStart; dt <= bookingToCreate.DateTimeEnd; dt = dt.AddDays(1))
             {
                 newBookingAllDates.Add(dt);
             }
 
-            // Lets loop through all the cars in the system 
-            // and check if they have booking dates that block our new booking,
+            
             List<HotellRoom> avaliblerooms = new List<HotellRoom>();
 
             foreach (var room in dbContext.HotellRooms.ToList())
@@ -68,25 +60,18 @@ namespace HotellBooking.Controller
 
                         }
                     }
-
-                    // if the car is already booked on the date of the new booking...
-                    // we dont need to check any of the other bookings... the car isnt available
-                    // so we break out of the loop and check the next car
                     if (!freeRoom)
                     {
                         break;
                     }
                 }
-
-
-                // finally if the car is free we can add it to our list of available cars
                 if (freeRoom)
                 {
                     avaliblerooms.Add(room);
                 }
             }
 
-            // Lets show the bookings details
+            
             Console.Clear();
             Console.WriteLine(" Booknings information");
             Console.WriteLine(" ==================================================================");
@@ -94,7 +79,6 @@ namespace HotellBooking.Controller
             Console.WriteLine(
                 $" {bookingToCreate.DateTimeStart.ToShortDateString()}\t{bookingToCreate.DateTimeEnd.ToShortDateString()}\t{numberOfDays}");
 
-            // FAIL! Display if no avaialable cars
             if (avaliblerooms.Count() < 1)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -103,11 +87,11 @@ namespace HotellBooking.Controller
 
                 Console.WriteLine(" tryck för att gå vidare");
                 Console.ReadLine();
-                return; // end method
+                return; 
             }
             else
             {
-                // Display the available cars
+                
                 Console.WriteLine("\n\n\n dessa rum är lediga");
                 Console.WriteLine("\n Hotell nr\t typ\t\tantal sängar");
                 Console.WriteLine(" ==================================================================");
@@ -118,16 +102,14 @@ namespace HotellBooking.Controller
                     Console.WriteLine(" ------------------------------------------------------------------");
                 }
             }
-            /////////////här är det fel
-
-            // Assign the car the user chose to the booking 
             Console.WriteLine("\n välj vilket rum nummer du vill ha");
             var SelectedRoomId = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
 
             bookingToCreate.HotellRoom = dbContext.HotellRooms
                 .Where(c => c.Id == SelectedRoomId)
                 .FirstOrDefault();
-
+            Console.WriteLine("\n välj vem som ska stanna");
             foreach (var guest in dbContext.Guests)
             {
                 Console.WriteLine($" {guest.Id} {guest.Name}");
@@ -150,8 +132,9 @@ namespace HotellBooking.Controller
                 $" {bookingToCreate.DateTimeStart.ToShortDateString()}\t{bookingToCreate.DateTimeEnd.ToShortDateString()}\t{numberOfDays}");
             Console.ForegroundColor = ConsoleColor.Gray;
 
-            Console.WriteLine("\n använd tangenbortet för att gå vidare");
+            Console.WriteLine("\n Tryck ENTER");
             Console.ReadLine();
+            Console.Clear();
         }
     }
 

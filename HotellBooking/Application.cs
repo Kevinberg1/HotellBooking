@@ -24,20 +24,19 @@ namespace HotellBooking
                 switch (sel)
                 {
                     case 1:
-                        var action = new CreateBooking(DbContext);
+                        var action = new GuestMenu(DbContext);
                         action.Run();
+                        Console.Clear();
                         break;
                     case 2:
-                        var action1 = new ReadBooking(DbContext);
+                        var action1 = new RoomMenu(DbContext);
                         action1.Run();
+                        Console.Clear();
                         break;
                     case 3:
-                        var action3 = new UpdateBooking(DbContext);
+                        var action3 = new BookingMenu(DbContext);
                         action3.Run();
-                        break;
-                    case 4:
-                        var action4 = new Deletebooking(DbContext);
-                        action4.Run();
+                        Console.Clear();
                         break;
 
                     case 0:
@@ -47,17 +46,6 @@ namespace HotellBooking
                         Console.WriteLine("vänligen välj något altenativ");
                         break;
                 }
-                List<ICrud> actions = new List<ICrud>();
-
-                var c = new CreateBooking(DbContext);
-                //var r = new Read(DbContext);
-                //var u = new Update(DbContext);
-                //var d = new Delete(DbContext);
-
-                //actions.Add(c);
-                //actions.Add(r);
-                //actions.Add(u);
-                //actions.Add(d);
             }
 
         }

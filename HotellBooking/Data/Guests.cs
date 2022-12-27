@@ -16,6 +16,8 @@ namespace HotellBooking.Data
         [Required]
         public string LastName { get; set; }
 
+        //Lägg till mer
+
 
     }
 }

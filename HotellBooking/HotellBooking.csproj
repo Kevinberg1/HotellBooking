@@ -22,9 +22,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controller\Guest\" />
-    <Folder Include="Controller\Hotellroom\" />
-  </ItemGroup>
-
 </Project>
