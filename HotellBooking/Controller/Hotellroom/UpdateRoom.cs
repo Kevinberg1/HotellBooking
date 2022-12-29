@@ -26,7 +26,7 @@ namespace HotellBooking.Controller.Hotellroom
             foreach (var r in dbContext.HotellRooms)
             {
                 Console.WriteLine($"Id: {r.Id}");
-                Console.WriteLine($"Type/Beds: {r.Type} {r.beds}");
+                Console.WriteLine($"Type/Beds: {r.Type} / {r.beds}");
                 Console.WriteLine("====================");
             }
 
@@ -35,7 +35,7 @@ namespace HotellBooking.Controller.Hotellroom
             var RoomToUpdate = dbContext.HotellRooms.First(p => p.Id == RoomIdToUpdate);
             Console.Clear();
 
-            Console.WriteLine("Ange Type: ");
+            Console.WriteLine("vad ska det vara för type? Dubbelrum/Enkelrum");
             var TypeUpdate = Console.ReadLine();
 
             Console.WriteLine("Ange hur många nya sängar: ");
