@@ -24,44 +24,36 @@ namespace HotellBooking.Data
             {
                 dbContext.HotellRooms.Add(new HotellRoom
                 {
-                    
                     Type = "Dubbelrum",
-                    beds = 2
-
-
+                    beds = 2,
+                    Size = 52
                 });
             }
             if (!dbContext.HotellRooms.Any(c => c.Type == "Dubbelrum"))
             {
                 dbContext.HotellRooms.Add(new HotellRoom
                 {
-
                     Type = "Dubbelrum",
-                    beds = 2
-
-
+                    beds = 2,
+                    Size = 43
                 });
             }
             if (!dbContext.HotellRooms.Any(c => c.Type == "Enkelrum"))
             {
                 dbContext.HotellRooms.Add(new HotellRoom
                 {
-
                     Type = "Enkelrum",
-                    beds = 1
-
-
+                    beds = 1,
+                    Size = 32
                 });
             }
             if (!dbContext.HotellRooms.Any(c => c.Type == "Enkelrum"))
             {
                 dbContext.HotellRooms.Add(new HotellRoom
                 {
-
                     Type = "Enkelrum",
-                    beds = 1
-
-
+                    beds = 1,
+                    Size = 28
                 });
             }
 

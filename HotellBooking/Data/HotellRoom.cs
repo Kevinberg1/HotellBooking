@@ -22,8 +22,8 @@ namespace HotellBooking.Data
         [Required]
         public int beds { get; set; }
 
-        
-
+        [Required]
+        public int Size { get; set; }
 
     }
 }

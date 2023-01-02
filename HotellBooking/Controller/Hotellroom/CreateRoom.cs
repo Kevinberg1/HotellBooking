@@ -18,18 +18,19 @@ namespace HotellBooking.Controller.Hotellroom
         public void Run()
         {
             Console.Clear();
-
-
             Console.WriteLine("skapa ett Rum");
             Console.WriteLine("\n vad ska det vara för type? Dubbelrum/Enkelrum");
             var TypeInput = Console.ReadLine();
             Console.WriteLine("\n Hur många sängar");
             var BedInput =Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Skriv in rummets stolek (m2)");
+            var Sizeinput = Convert.ToInt32( Console.ReadLine());
 
             dbContext.HotellRooms.Add(new HotellRoom()
             {
                 Type = TypeInput,
-                beds = BedInput
+                beds = BedInput,
+                Size = Sizeinput
                 
             });
             dbContext.SaveChanges();

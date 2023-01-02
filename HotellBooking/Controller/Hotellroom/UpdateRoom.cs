@@ -26,7 +26,8 @@ namespace HotellBooking.Controller.Hotellroom
             foreach (var r in dbContext.HotellRooms)
             {
                 Console.WriteLine($"Id: {r.Id}");
-                Console.WriteLine($"Type/Beds: {r.Type} / {r.beds}");
+                Console.WriteLine($"Type/Beds: {r.Type} / {r.beds} st");
+                Console.WriteLine($"Stolek. {r.Size} m2");
                 Console.WriteLine("====================");
             }
 
@@ -41,10 +42,13 @@ namespace HotellBooking.Controller.Hotellroom
             Console.WriteLine("Ange hur många nya sängar: ");
             var bedUpdate = Convert.ToInt32(Console.ReadLine());
 
+            Console.WriteLine("Skriv in rummets stolek: (m2)");
+            var SizeUpdate = Convert.ToInt32(Console.ReadLine());
 
 
             RoomToUpdate.Type = TypeUpdate;
             RoomToUpdate.beds = bedUpdate;
+            RoomToUpdate.Size = SizeUpdate;
             dbContext.SaveChanges();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n Rumet är nu Updaterad");

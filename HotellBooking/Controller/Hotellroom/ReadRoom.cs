@@ -26,7 +26,8 @@ namespace HotellBooking.Controller.Hotellroom
             foreach (var r in dbContext.HotellRooms)
             {
                 Console.WriteLine($"Type: {r.Type}");
-                Console.WriteLine($"Sängar: {r.beds}");
+                Console.WriteLine($"Sängar: {r.beds} st");
+                Console.WriteLine($"Stolek: {r.Size} m2");
                 Console.WriteLine("---------------------------");
 
                 //Lägg till mer

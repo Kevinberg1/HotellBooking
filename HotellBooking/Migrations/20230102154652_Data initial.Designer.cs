@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotellBooking.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221222142343_initial migration")]
-    partial class initialmigration
+    [Migration("20230102154652_Data initial")]
+    partial class Datainitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -81,6 +81,9 @@ namespace HotellBooking.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
 
                     b.Property<string>("Type")
                         .IsRequired()
