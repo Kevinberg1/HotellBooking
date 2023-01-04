@@ -30,8 +30,8 @@ namespace HotellBooking.Controller
                 Console.WriteLine("här väljer du vad du vill göra med dina bokningar");
                 Console.WriteLine("1: Create: Booking");
                 Console.WriteLine("2: Read: Booking");
-                Console.WriteLine("3: Update: Booking");
-                Console.WriteLine("4: Delete: Booking");
+                //Console.WriteLine("3: Update: Booking");  // se kommentar nedan
+                Console.WriteLine("3: Delete: Booking");
                 Console.WriteLine("0: Tillbaka till huvudmeny");
 
                 var sel = Convert.ToInt32(Console.ReadLine());
@@ -46,11 +46,13 @@ namespace HotellBooking.Controller
                         var action1 = new ReadBooking(DbContext);
                         action1.Run();
                         break;
+
+                    //denna häller jag på med men tar bort eftersom den ej behövs för Godknät så systemet ej krachar.
+                    //case 3: 
+                    //    var action3 = new UpdateBooking(DbContext);
+                    //    action3.Run();
+                    //    break;
                     case 3:
-                        var action3 = new UpdateBooking(DbContext);
-                        action3.Run();
-                        break;
-                    case 4:
                         var action4 = new Deletebooking(DbContext);
                         action4.Run();
                         break;
